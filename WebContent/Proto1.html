@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insurance Report</title>
+<meta
+	content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'
+	name='viewport'>
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="resources/css/style.css">
+<link rel="stylesheet" href="resources/css/bootstrap-multiselect.css">
+
+<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+
+<!-- Resources -->
+<script src="resources/js/policy.js"></script>
+<script src="resources/js/bootstrap-multiselect.js"></script>
+<script src="resources/js/componentData.js"></script>
+<script src="resources/js/load.js"></script>
+<script
+	src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
+<script src="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/d004434a5ff76e7b97c8b07c01f34ca69e635d97/src/js/bootstrap-datetimepicker.js"></script>
+<link
+	href="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/d004434a5ff76e7b97c8b07c01f34ca69e635d97/build/css/bootstrap-datetimepicker.css"
+	rel="stylesheet">
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+<!-- High Charts API --> 
+
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/highcharts-3d.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+</head>
+<body>
+	<div class="navContainer">
+		<span id="UserBar" class="pull-right">
+				Hi, <strong><span>Admin</span></strong>
+				<button type="button" class="btn btn-link">Logout</button>
+		</span>
+		<h3><span id="title">Insurance Analytics
+				Dashboard</span></h3>
+	</div>
+	<div class="row filtergroup"  id="filterContainerDiv">
+			<div class="col-sm-2">
+				<div class="input-group">
+					<span class="input-group-addon">Select
+						Country</span> <select multiple="multiple" data-hover="dropdown"
+						data-toggle="dropdown" id="countryCombo">
+					</select>
+				</div>
+			</div>
+			<div class="col-sm-2">
+				<div class="input-group">
+					<span class="input-group-addon">Select
+						City</span> <select multiple="multiple" data-hover="dropdown"
+						data-toggle="dropdown"id="cityCombo">
+					</select>
+				</div>
+			</div>
+			<div class="col-sm-2">
+				<div class="input-group">
+					<span class="input-group-addon">Select
+						Policy Type</span> <select multiple="multiple" data-hover="dropdown"
+						data-toggle="dropdown" id="policyTypeCombo">
+					</select>
+				</div>
+			</div>
+			<div class="col-sm-2">
+				<div class="input-group">
+					<span class="input-group-addon">Select
+						Agents</span> <select multiple="multiple" data-hover="dropdown"
+						data-toggle="dropdown" id="agentsCombo">
+					</select>
+				</div>
+			</div>
+			<div class='col-sm-2'>
+				<div class="form-group">
+					<div class='input-group date' id='datetimepicker6'>
+						<span class="input-group-addon">From</span> <input id="startdate" type='text'
+							class="form-control" /> <span class="input-group-addon">
+							<span class="glyphicon glyphicon-calendar"></span>
+						</span>
+					</div>
+				</div>
+			</div>
+			<div class='col-sm-2'>
+				<div class="form-group">
+					<div class='input-group date' id='datetimepicker7'>
+						<span class="input-group-addon">To</span> <input id="enddate" type='text'
+							class="form-control" /> <span class="input-group-addon">
+							<span class="glyphicon glyphicon-calendar"></span>
+						</span>
+					</div>
+				</div>
+			</div>
+
+		<div class="row">
+			<div class="col-sm-2">
+				<div class="input-group">
+					<span class="input-group-addon">Group by</span> <select
+						data-hover="dropdown" data-toggle="dropdown"
+						id="groupByCombo">
+					</select>
+				</div>
+			</div>
+			<div class="col-sm-2">
+				<div class="input-group">
+					<span class="input-group-addon">Policy Status</span> <select multiple="multiple" data-hover="dropdown"
+						data-toggle="dropdown"id="statusCombo">
+					</select>
+				</div>
+			</div>
+			<div class="col-sm-2">
+				<div class="input-group">
+					<span class="input-group-addon">Select Gender</span> 
+						<select multiple="multiple" data-hover="dropdown"
+						data-toggle="dropdown" id="genderCombo">
+					</select>
+				</div>
+			</div>
+		<div class="col-sm-2">
+				<div class="input-group">
+					<span class="input-group-addon" id="ageFilter">Select age limit</span> 
+						<select multiple="multiple" data-hover="dropdown"
+						data-toggle="dropdown" id="ageSlabCombo">
+					</select>
+				</div>
+			</div>
+			<div class="col-sm-2" id="salesFilterDiv">
+				<div class="input-group">
+					<span class="input-group-addon" id="salesFilter">Sales</span>
+      				<div class="input-group-btn">
+      					<button type="button" class="btn btn-default dropdown-toggle" aria-expanded="false" data-hover="dropdown" data-toggle="dropdown" id="salesCombo">
+        					<span class="caret"></span>
+        				</button>
+        	   		</div><!-- /btn-group -->
+      				<input type="text" class="form-control" aria-label="...">
+    			</div><!-- /input-group -->
+			</div> 
+			<div class="col-sm-2" id="soldFilterDiv">
+				<div class="input-group">
+					<span class="input-group-addon" id="soldFilter">Sold</span>
+	      			<div class="input-group-btn">
+	      				<button type="button" class="btn btn-default dropdown-toggle" aria-expanded="false" data-hover="dropdown" data-toggle="dropdown" id="soldCombo">
+	        				<span class="caret"></span>
+	        			</button>
+	        	    </div>
+	      			<input type="text" class="form-control" aria-label="...">
+	    		</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2" style="">
+				<button type="button" class="btn btn-primary" onclick="generateReport();">Generate
+					report</button>
+			</div>
+			<div class="col-sm-2" style="">
+				<button type="button" class="btn btn-info">Reset Filters</button>
+			</div>
+			<div class="col-sm-2" style="">
+				<button type="button" class="btn btn-info">Export to Excel</button>
+			</div>
+			<div class="col-sm-2" style="">
+				<button type="button" class="btn btn-info">Export to PDF</button>
+			</div>
+			<div class="col-sm-2" style="">
+				<button type="button" class="btn btn-info">Save Query</button>
+			</div>
+</div>
+
+	</div>
+
+<div class="row">
+	<div id="optionsPane" class="col-md-2">
+
+		<ul class="list-group reportBy">
+			<li class="list-group-item"><a id="home" href="#">Home</a></li>
+ 		 	<li class="list-group-item"><a id="salesByType" href="#">Sales report by type</a></li>
+ 			<li class="list-group-item">Option 1</li>
+ 			<li class="list-group-item">Option 2</li>
+			<li class="list-group-item">Option 3</li>
+   			<li class="list-group-item">Option 4</li>
+  			<li class="list-group-item">Option 5</li>
+		</ul>
+	</div>
+	<div id="chartContainerDiv" class="col-md-10">
+	
+	</div>
+</div>
+</body>
+
+</html>

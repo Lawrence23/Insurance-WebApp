@@ -1,0 +1,49 @@
+@CHARSET "UTF-8";
+
+.filtergroup {
+	width: 98%;
+	height: 98%;
+	border: solid 1px grey;
+	margin: 1%;
+	padding: 10px;
+}
+
+.input-group-addon {
+	padding: 6px 5px;
+}
+
+.btn-height {
+	height: 34px;
+}
+.row{
+	margin-left:10px;
+	padding-top:10px;
+}
+.reportBy>li{
+	font-size:12px;
+	font-weight:bold;
+}
+#title{
+	color: grey;
+	padding-left: 20px;
+}
+.navContainer{
+	overflow:hidden;
+}
+#optionsPane{
+	padding:0px 1px;	
+}
+#lineChart {
+	width: 100%;
+	margin: 0 auto;
+}
+#chartContainerDiv{
+	width: 75%;
+	height: 100%;
+	margin-left:5px;
+}
+#pieChart {
+	width: 50%;
+	height: 100%;
+	margin: 0 auto;
+}
